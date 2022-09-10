@@ -50,11 +50,11 @@ const client = new Client({
 
 // -------------
 
-client.on('messageCreate', (message) => {
-  // console.log(message.author.tag + ':');
-  console.log(message.content);
-  // console.log(message.createdAt.toDateString());
-});
+// client.on('messageCreate', (message) => {
+//   // console.log(message.author.tag + ':');
+//   console.log(message.content);
+//   // console.log(message.createdAt.toDateString());
+// });
 
 client.on('channelPinsUpdate', (channel, date) => {});
 
@@ -85,6 +85,16 @@ async function main() {
           description: 'The type of food',
           type: 3,
           required: true,
+          choices: [
+            {
+              name: 'Cake',
+              value: 'Cake',
+            },
+            {
+              name: 'Pizza',
+              value: 'Pizza',
+            },
+          ],
         },
       ],
     },
