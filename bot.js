@@ -1,17 +1,21 @@
-import { config } from 'dotenv';
-import 'colors';
-import {
-  ActionRowBuilder,
-  Client,
-  GatewayIntentBits,
-  InteractionType,
-  ModalBuilder,
-  Routes,
-  SelectMenuBuilder,
-  TextInputBuilder,
-  TextInputStyle,
-} from 'discord.js';
-import { REST } from '@discordjs/rest';
+// import { config } from 'dotenv';
+require('dotenv').config();
+// import 'colors';
+require('colors');
+// import {
+//   ActionRowBuilder,
+//   Client,
+//   GatewayIntentBits,
+//   InteractionType,
+//   ModalBuilder,
+//   Routes,
+//   SelectMenuBuilder,
+//   TextInputBuilder,
+//   TextInputStyle,
+// } from 'discord.js';
+const discord = require('discord.js');
+// import { REST } from '@discordjs/rest';
+const { REST, Routes } = require('discord.js');
 // import OrderCommand from './commands/order.js';
 // import RolesCommand from './commands/roles.js';
 // import UsersCommand from './commands/user.js';
@@ -19,14 +23,18 @@ import { REST } from '@discordjs/rest';
 // import BanCommand from './commands/ban.js';
 // import RegisterCommand from './commands/register.js';
 
-config();
+require('http')
+  .createServer((req, res) => res.end('Listening'))
+  .listen(8000);
+
+// config();
 
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.PREFIX;
 const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;
 
-const client = new Client({
+const client = new discord.Client({
   intents: [
     'DirectMessageReactions',
     'DirectMessageTyping',
