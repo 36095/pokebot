@@ -67,9 +67,11 @@ client.once('ready', (self) => {
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  if (interaction.commandName === 'store') {
+  if (interaction.commandName === 'starter') {
     await interaction.reply(
-      'Item purchased: **x1 ' + interaction.options.get('food').value + '**'
+      'You choose **' +
+        interaction.options.get('pokémon').value +
+        '** as your first partner.'
     );
   }
 });
@@ -77,22 +79,26 @@ client.on('interactionCreate', async (interaction) => {
 async function main() {
   const commands = [
     {
-      name: 'store',
-      description: 'Store where you can buy things',
+      name: 'starter',
+      description: 'Choose your starter.',
       options: [
         {
-          name: 'food',
-          description: 'The type of food',
+          name: 'pokémon',
+          description: 'Shows you the list of starter pokémons.',
           type: 3,
           required: true,
           choices: [
             {
-              name: 'Cake',
-              value: 'Cake',
+              name: 'Bulbasaur',
+              value: 'Bulbasaur',
             },
             {
-              name: 'Pizza',
-              value: 'Pizza',
+              name: 'Charmander',
+              value: 'Charmander',
+            },
+            {
+              name: 'Squirtle',
+              value: 'Squirtle',
             },
           ],
         },
