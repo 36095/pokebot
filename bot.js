@@ -1,27 +1,8 @@
-// import { config } from 'dotenv';
 require('dotenv').config();
-// import 'colors';
-require('colors');
-// import {
-//   ActionRowBuilder,
-//   Client,
-//   GatewayIntentBits,
-//   InteractionType,
-//   ModalBuilder,
-//   Routes,
-//   SelectMenuBuilder,
-//   TextInputBuilder,
-//   TextInputStyle,
-// } from 'discord.js';
+
 const discord = require('discord.js');
-// import { REST } from '@discordjs/rest';
+
 const { REST, Routes } = require('discord.js');
-// import OrderCommand from './commands/order.js';
-// import RolesCommand from './commands/roles.js';
-// import UsersCommand from './commands/user.js';
-// import ChannelsCommand from './commands/channel.js';
-// import BanCommand from './commands/ban.js';
-// import RegisterCommand from './commands/register.js';
 
 require('http')
   .createServer((req, res) => res.end('Listening'))
@@ -58,18 +39,12 @@ const client = new discord.Client({
 
 // -------------
 
-// client.on('messageCreate', (message) => {
-//   // console.log(message.author.tag + ':');
-//   console.log(message.content);
-//   // console.log(message.createdAt.toDateString());
-// });
-
 client.on('channelPinsUpdate', (channel, date) => {});
 
 const rest = new REST({ version: '10' }).setToken(token);
 
 client.once('ready', (self) => {
-  console.log(`${self.user.tag.rainbow} is ${self.user.presence.status.green}`);
+  console.log(`${self.user.tag} is ${self.user.presence.status}`);
 });
 
 client.on('interactionCreate', async (interaction) => {
@@ -116,11 +91,11 @@ async function main() {
 
   try {
     console.clear();
-    console.log('Started refreshing application {/} commands.'.blue);
+    console.log('Started refreshing application {/} commands.');
     await rest.put(Routes.applicationCommands(CLIENT_ID, GUILD_ID), {
       body: commands,
     });
-    console.log('Successfully reloaded application {/} commands.'.green);
+    console.log('Successfully reloaded application {/} commands.');
     client.login(token);
   } catch (error) {
     console.error(error);
